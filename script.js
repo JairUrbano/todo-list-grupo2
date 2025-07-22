@@ -10,9 +10,10 @@ function addList() {
     const input = document.getElementById('newListName');
     const listName = input.value.trim();
 
-    if (listName) {
+    if (listName && !document.querySelector(`[data-list-name="${listName}"]`)) {
         const newListItem = document.createElement('li');
         newListItem.className = 'list-item';
+        newListItem.dataset.listName = listName;
 
         const titleSpan = document.createElement('span');
         titleSpan.textContent = listName;
@@ -24,8 +25,13 @@ function addList() {
         editBtn.className = 'edit-list-btn';
         editBtn.onclick = function () {
             const nuevoNombre = prompt('Editar nombre de la lista:', titleSpan.textContent);
-            if (nuevoNombre) {
+            if (nuevoNombre && nuevoNombre !== listName) {
+                const oldTasks = JSON.parse(localStorage.getItem(listName)) || [];
+                localStorage.setItem(nuevoNombre, JSON.stringify(oldTasks));
+                localStorage.removeItem(listName);
+
                 titleSpan.textContent = nuevoNombre;
+                newListItem.dataset.listName = nuevoNombre;
             }
         };
 
@@ -34,12 +40,13 @@ function addList() {
         deleteBtn.innerHTML = '🗑️';
         deleteBtn.className = 'delete-list-btn';
         deleteBtn.onclick = function () {
+            localStorage.removeItem(listName);
             newListItem.remove();
         };
 
         // Mostrar tareas al hacer clic en el título
         titleSpan.onclick = function () {
-            showTaskArea(listName);
+            showTaskArea(newListItem.dataset.listName);
         };
 
         newListItem.appendChild(titleSpan);
@@ -52,7 +59,6 @@ function addList() {
     closeModal();
 }
 
-// Mostrar tareas
 function showTaskArea(listName) {
     const mainArea = document.querySelector('.main-area');
     mainArea.innerHTML = ''; // Limpiar
@@ -66,13 +72,18 @@ function showTaskArea(listName) {
 
     const addTaskBtn = document.createElement('button');
     addTaskBtn.textContent = 'Agregar tarea';
+
     const taskList = document.createElement('ul');
     taskList.className = 'task-list';
+
+    // Cargar tareas almacenadas
+    const tareasGuardadas = JSON.parse(localStorage.getItem(listName)) || [];
+    tareasGuardadas.forEach(t => addTask(t.text, taskList, listName, t.done));
 
     addTaskBtn.onclick = function () {
         const taskText = taskInput.value.trim();
         if (taskText) {
-            addTask(taskText, taskList);
+            addTask(taskText, taskList, listName, false);
             taskInput.value = '';
         }
     };
@@ -83,13 +94,23 @@ function showTaskArea(listName) {
     mainArea.appendChild(taskList);
 }
 
-// Añadir una tarea
-function addTask(text, taskList) {
+function addTask(text, taskList, listName, isDone) {
     const taskItem = document.createElement('li');
     taskItem.className = 'task-item';
 
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = isDone;
+    checkbox.onchange = () => saveTasks(listName, taskList);
+
     const taskSpan = document.createElement('span');
     taskSpan.textContent = text;
+    if (isDone) taskSpan.style.textDecoration = 'line-through';
+
+    checkbox.addEventListener('change', () => {
+        taskSpan.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
+        saveTasks(listName, taskList);
+    });
 
     // Botón Editar tarea
     const editTaskBtn = document.createElement('button');
@@ -99,6 +120,7 @@ function addTask(text, taskList) {
         const nuevoTexto = prompt('Editar tarea:', taskSpan.textContent);
         if (nuevoTexto) {
             taskSpan.textContent = nuevoTexto;
+            saveTasks(listName, taskList);
         }
     };
 
@@ -108,10 +130,70 @@ function addTask(text, taskList) {
     deleteTaskBtn.className = 'delete-task-btn';
     deleteTaskBtn.onclick = function () {
         taskItem.remove();
+        saveTasks(listName, taskList);
     };
 
+    taskItem.appendChild(checkbox);
     taskItem.appendChild(taskSpan);
     taskItem.appendChild(editTaskBtn);
     taskItem.appendChild(deleteTaskBtn);
     taskList.appendChild(taskItem);
+
+    saveTasks(listName, taskList);
 }
+
+function saveTasks(listName, taskList) {
+    const tasks = [];
+    taskList.querySelectorAll('li').forEach(item => {
+        const text = item.querySelector('span').textContent;
+        const done = item.querySelector('input[type="checkbox"]').checked;
+        tasks.push({ text, done });
+    });
+    localStorage.setItem(listName, JSON.stringify(tasks));
+}
+
+// Cargar listas desde localStorage al iniciar
+window.onload = function () {
+    for (let i = 0; i < localStorage.length; i++) {
+        const listName = localStorage.key(i);
+        const newListItem = document.createElement('li');
+        newListItem.className = 'list-item';
+        newListItem.dataset.listName = listName;
+
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = listName;
+        titleSpan.className = 'list-title';
+
+        const editBtn = document.createElement('button');
+        editBtn.innerHTML = '✏️';
+        editBtn.className = 'edit-list-btn';
+        editBtn.onclick = function () {
+            const nuevoNombre = prompt('Editar nombre de la lista:', titleSpan.textContent);
+            if (nuevoNombre && nuevoNombre !== listName) {
+                const oldTasks = JSON.parse(localStorage.getItem(listName)) || [];
+                localStorage.setItem(nuevoNombre, JSON.stringify(oldTasks));
+                localStorage.removeItem(listName);
+
+                titleSpan.textContent = nuevoNombre;
+                newListItem.dataset.listName = nuevoNombre;
+            }
+        };
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerHTML = '🗑️';
+        deleteBtn.className = 'delete-list-btn';
+        deleteBtn.onclick = function () {
+            localStorage.removeItem(listName);
+            newListItem.remove();
+        };
+
+        titleSpan.onclick = function () {
+            showTaskArea(newListItem.dataset.listName);
+        };
+
+        newListItem.appendChild(titleSpan);
+        newListItem.appendChild(editBtn);
+        newListItem.appendChild(deleteBtn);
+        document.getElementById('list-container').appendChild(newListItem);
+    }
+};
