@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Listas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <div class="sidebar">
+            <h1>Mis Listas</h1>
+            <button class="create-list-btn" onclick="createNewList()">+ Crear Nueva Lista</button>
+            <ul id="list-container">
+                <!-- Aquí se mostrarán las listas creadas -->
+            </ul>
+        </div>
+
+        <!-- Área principal -->
+        <div class="main-area">
+            <div class="welcome-message">
+                <img src="img/icon-list.jpeg" alt="clipboard icon">
+                <h2>Bienvenido</h2>
+                <p>Selecciona una lista para ver sus tareas o crea una nueva para empezar.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
