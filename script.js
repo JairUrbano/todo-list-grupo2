@@ -25,7 +25,7 @@ function addList() {
         const trashIcon = document.createElement('span');
         trashIcon.className = 'trash-icon';
         trashIcon.innerHTML = '🗑️';
-        trashIcon.title = 'Eliminar lista';
+        trashIcon.title = 'Borrar lista';
 
         // Evento para eliminar la lista
         trashIcon.onclick = function(e) {
