@@ -16,10 +16,29 @@ function addList() {
     if (listName) {
         const newListItem = document.createElement('li');
         newListItem.className = 'list-item';
-        newListItem.textContent = listName;
+
+        // Crear un span para el nombre de la lista
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = listName;
+
+        // Crear el icono de tacho de basura
+        const trashIcon = document.createElement('span');
+        trashIcon.className = 'trash-icon';
+        trashIcon.innerHTML = '🗑️';
+        trashIcon.title = 'Eliminar lista';
+
+        // Evento para eliminar la lista
+        trashIcon.onclick = function(e) {
+            e.stopPropagation();
+            newListItem.remove();
+        };
+
+        newListItem.appendChild(nameSpan);
+        newListItem.appendChild(trashIcon);
+
         document.getElementById('list-container').appendChild(newListItem);
     }
 
     input.value = '';      // Limpiar campo
-    closeModal();          // Cerrar modal
-}
+    closeModal();       
+}   // Cerrar
