@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #F7F7F7; /* Fondo muy suave para dar un toque limpio */
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 
 .sidebar {
     width: 300px;
-    background-color: #2c3e50;
+    background-color: #1F3A6B; /* Azul oscuro elegante para la barra lateral */
     color: white;
     padding: 30px 20px;
     display: flex;
@@ -26,17 +26,19 @@ body {
     justify-content: flex-start;
     position: sticky;
     top: 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
 }
 
 .sidebar h1 {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 600;
     margin-bottom: 30px;
-    color: #fff;
+    color: #ECF0F1; /* Blanco para contraste */
+    text-align: center;
 }
 
 .create-list-btn {
-    background-color: #2980b9;
+    background-color: #6C7B8B; /* Gris azulado para el botón, tono más suave */
     border: none;
     color: white;
     padding: 12px;
@@ -48,11 +50,11 @@ body {
 }
 
 .create-list-btn:hover {
-    background-color: #3498db;
+    background-color: #5A6B7A; /* Gris más oscuro al pasar el mouse */
 }
 
 .list-item {
-    background-color: #34495e;
+    background-color: #4A6572; /* Gris oscuro para las listas, combinando con el fondo */
     margin: 10px 0;
     padding: 12px;
     cursor: pointer;
@@ -62,13 +64,13 @@ body {
 }
 
 .list-item:hover {
-    background-color: #16a085;
+    background-color: #5D6D7E; /* Gris azulado cuando se pasa el mouse */
 }
 
 .main-area {
     flex: 1;
     padding: 30px;
-    background-color: #ecf0f1;
+    background-color: #F4F6F9; /* Fondo muy claro para el área principal */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,12 +78,12 @@ body {
 }
 
 .welcome-message {
-    color: #7f8c8d;
+    color: #7F8C8D; /* Gris suave para el texto de bienvenida */
 }
 
 .welcome-message img {
-    width: 100px;
-    height: 100px;
+    width: 120px; /* Tamaño ajustado para mejor visibilidad */
+    height: 120px;
 }
 
 .welcome-message h2 {
@@ -102,7 +104,7 @@ body {
     .sidebar {
         width: 100%;
         padding: 20px;
-        background-color: #34495e;
+        background-color: #1F3A6B; /* Mismo color en dispositivos pequeños */
     }
 
     .main-area {
