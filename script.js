@@ -49,8 +49,26 @@ function addTask() {
 
     if (value) {
         const li = document.createElement('li');
-        li.textContent = `• ${value}`;
+        li.classList.add('task-item');
+
+        // Crear el ícono de check como span
+        const check = document.createElement('span');
+        check.classList.add('check-circle');
+        check.innerHTML = '&#10003;'; // ✓ símbolo unicode
+
+        // Evento: marcar tarea como completada
+        check.addEventListener('click', () => {
+            li.classList.toggle('completed');
+            check.classList.toggle('checked');
+        });
+
+        const text = document.createElement('span');
+        text.textContent = value;
+
+        li.appendChild(check);
+        li.appendChild(text);
         document.getElementById('taskList').appendChild(li);
         input.value = '';
     }
 }
+
