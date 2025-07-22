@@ -1,0 +1,31 @@
+.input {
+  @apply flex-1 p-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg shadow hover:from-blue-600 hover:to-indigo-600 transition;
+}
+
+.btn-icon {
+  @apply text-gray-500 hover:text-blue-600 transition text-lg;
+}
+
+.task span.completed {
+  @apply line-through text-gray-400;
+}
+
+.modal {
+  @apply fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50;
+}
+
+.btn-cancel {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-1 rounded-lg;
+}
+
+.btn-save {
+  @apply bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700;
+}
+
+.card {
+  @apply bg-white/70 backdrop-blur-md border border-gray-200 p-5 rounded-2xl shadow-md transition hover:shadow-lg;
+}

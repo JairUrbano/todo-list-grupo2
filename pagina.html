@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestor de Tareas Yerchelo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-4xl font-bold text-center text-blue-800 mb-8">📝 Mis Listas de Tareas</h1>
+
+    <div class="flex items-center gap-3 mb-6">
+      <input id="listNameInput" type="text" placeholder="Nombre de la nueva lista" class="input">
+      <button onclick="createList()" class="btn-primary">➕ Crear Lista</button>
+    </div>
+
+   <div id="listsContainer" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3"></div>
+  </div>
+
+  <!-- Modal para editar -->
+  <div id="modal" class="modal hidden">
+    <div class="bg-white p-6 rounded shadow w-80">
+      <h2 class="text-lg font-bold mb-4" id="modalTitle">Editar</h2>
+      <input id="modalInput" type="text" class="w-full p-2 border rounded mb-4" />
+      <div class="flex justify-end gap-2">
+        <button onclick="closeModal()" class="btn-cancel">Cancelar</button>
+        <button onclick="confirmEdit()" class="btn-save">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
