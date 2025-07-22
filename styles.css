@@ -319,29 +319,25 @@ body {
     color: #333;
 }
 
-.check-circle {
+.custom-checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #333;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background-color: #4CAF50; /* verde */
-    color: white;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s, opacity 0.3s;
     user-select: none;
 }
 
-.checked {
-    opacity: 0.4; /* se ve más apagado al estar marcado */
+.custom-checkbox.checked::after {
+    content: "✕";  /* Unicode X */
+    color: #c0392b;
+    font-size: 16px;
 }
 
 .task-item.completed span:last-child {
     text-decoration: line-through;
     color: #999;
 }
-
-
- 

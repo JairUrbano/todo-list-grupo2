@@ -51,21 +51,20 @@ function addTask() {
         const li = document.createElement('li');
         li.classList.add('task-item');
 
-        // Crear el ícono de check como span
-        const check = document.createElement('span');
-        check.classList.add('check-circle');
-        check.innerHTML = '&#10003;'; // ✓ símbolo unicode
+        // Crear el "cuadro" de check
+        const checkbox = document.createElement('span');
+        checkbox.classList.add('custom-checkbox');
 
-        // Evento: marcar tarea como completada
-        check.addEventListener('click', () => {
+        // Al hacer clic: marca/desmarca y tacha texto
+        checkbox.addEventListener('click', () => {
             li.classList.toggle('completed');
-            check.classList.toggle('checked');
+            checkbox.classList.toggle('checked');
         });
 
         const text = document.createElement('span');
         text.textContent = value;
 
-        li.appendChild(check);
+        li.appendChild(checkbox);
         li.appendChild(text);
         document.getElementById('taskList').appendChild(li);
         input.value = '';
