@@ -30,6 +30,7 @@ body {
     top: 0;
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.08);
     border-right: 2px solid #e0e4ea;
+    animation: fadeIn 0.7s;
 }
 
 .sidebar h1 {
@@ -82,7 +83,22 @@ body {
     box-shadow: 0 2px 8px rgba(31, 58, 107, 0.06);
     transition: background 0.2s, color 0.2s;
     cursor: pointer;
-    display: block;
+    display: flex;           /* Para alinear nombre e icono */
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Icono de tacho de basura */
+.trash-icon {
+    margin-left: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    vertical-align: middle;
+    transition: color 0.2s;
+}
+
+.trash-icon:hover {
+    color: #e74c3c;
 }
 
 .list-item.active,
@@ -100,6 +116,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    animation: fadeIn 0.7s;
 }
 
 .welcome-message {
@@ -192,6 +209,11 @@ body {
     }
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
@@ -201,6 +223,7 @@ body {
     .sidebar {
         width: 100%;
         padding: 20px;
+        background-color: #fff;
         border-right: none;
         border-bottom: 2px solid #e0e4ea;
     }
@@ -208,5 +231,10 @@ body {
     .main-area {
         padding: 15px;
     }
+
+    .create-list-btn {
+        width: 100%;
+        font-size: 18px;
+        padding: 16px;
+    }
 }
- 
