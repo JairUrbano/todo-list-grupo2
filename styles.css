@@ -1,4 +1,4 @@
-/* styles.css */
+/* Reset y configuración general */
 * {
     margin: 0;
     padding: 0;
@@ -7,18 +7,20 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #F7F7F7; /* Fondo muy suave para dar un toque limpio */
+    background-color: #F7F7F7; /* Fondo suave */
 }
 
+/* Contenedor general */
 .container {
     display: flex;
     min-height: 100vh;
     flex-direction: row;
 }
 
+/* Barra lateral */
 .sidebar {
     width: 300px;
-    background-color: #1F3A6B; /* Azul oscuro elegante para la barra lateral */
+    background-color: #1F3A6B; /* Azul oscuro */
     color: white;
     padding: 30px 20px;
     display: flex;
@@ -26,19 +28,19 @@ body {
     justify-content: flex-start;
     position: sticky;
     top: 0;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar h1 {
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 30px;
-    color: #ECF0F1; /* Blanco para contraste */
+    color: #ECF0F1;
     text-align: center;
 }
 
 .create-list-btn {
-    background-color: #6C7B8B; /* Gris azulado para el botón, tono más suave */
+    background-color: #6C7B8B;
     border: none;
     color: white;
     padding: 12px;
@@ -50,11 +52,12 @@ body {
 }
 
 .create-list-btn:hover {
-    background-color: #5A6B7A; /* Gris más oscuro al pasar el mouse */
+    background-color: #5A6B7A;
 }
 
+/* Estilo para las listas */
 .list-item {
-    background-color: #4A6572; /* Gris oscuro para las listas, combinando con el fondo */
+    background-color: #4A6572;
     margin: 10px 0;
     padding: 12px;
     cursor: pointer;
@@ -64,13 +67,14 @@ body {
 }
 
 .list-item:hover {
-    background-color: #5D6D7E; /* Gris azulado cuando se pasa el mouse */
+    background-color: #5D6D7E;
 }
 
+/* Área principal */
 .main-area {
     flex: 1;
     padding: 30px;
-    background-color: #F4F6F9; /* Fondo muy claro para el área principal */
+    background-color: #F4F6F9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,11 +82,11 @@ body {
 }
 
 .welcome-message {
-    color: #7F8C8D; /* Gris suave para el texto de bienvenida */
+    color: #7F8C8D;
 }
 
 .welcome-message img {
-    width: 120px; /* Tamaño ajustado para mejor visibilidad */
+    width: 120px;
     height: 120px;
 }
 
@@ -96,6 +100,76 @@ body {
     margin-top: 10px;
 }
 
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fef6e4; /* Color distinto */
+    color: #001858;
+    margin: 10% auto;
+    padding: 25px 35px;
+    border-radius: 16px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeInUp 0.3s ease;
+}
+
+.modal-content input {
+    width: 90%;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.modal-content button {
+    background-color: #ffb703;
+    color: #001858;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #f4a261;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #e63946;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -104,7 +178,6 @@ body {
     .sidebar {
         width: 100%;
         padding: 20px;
-        background-color: #1F3A6B; /* Mismo color en dispositivos pequeños */
     }
 
     .main-area {
