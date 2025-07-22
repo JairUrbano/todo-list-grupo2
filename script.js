@@ -15,9 +15,8 @@ function addList() {
         newListItem.className = 'list-item';
         newListItem.textContent = listName;
 
-        // Cuando se hace clic en una lista
         newListItem.addEventListener('click', function () {
-            showListAsTable(listName);
+            showListView(listName);
         });
 
         document.getElementById('list-container').appendChild(newListItem);
@@ -27,20 +26,14 @@ function addList() {
     closeModal();
 }
 
-function showListAsTable(title) {
-    const mainArea = document.querySelector('.main-area');
-    mainArea.innerHTML = `
-        <div class="table-container">
-            <div class="table-header">${title}</div>
-            <div class="table-body">
-                <ul id="taskList"></ul>
-                <div class="task-input">
-                    <input type="text" id="taskInput" placeholder="Escribe una tarea..." />
-                    <button onclick="addTask()">Añadir</button>
-                </div>
-            </div>
-        </div>
-    `;
+function showListView(title) {
+    document.querySelector('.welcome-message').style.display = 'none';
+    const listView = document.querySelector('.list-view');
+    listView.style.display = 'block';
+
+    document.getElementById('selectedListName').textContent = title;
+    document.getElementById('taskList').innerHTML = ''; // limpia tareas anteriores
+    document.getElementById('taskInput').value = '';
 }
 
 function addTask() {
@@ -49,16 +42,13 @@ function addTask() {
 
     if (value) {
         const li = document.createElement('li');
-        li.classList.add('task-item');
+        li.className = 'task-item';
 
-        // Crear el "cuadro" de check
         const checkbox = document.createElement('span');
-        checkbox.classList.add('custom-checkbox');
-
-        // Al hacer clic: marca/desmarca y tacha texto
+        checkbox.className = 'custom-checkbox';
         checkbox.addEventListener('click', () => {
-            li.classList.toggle('completed');
             checkbox.classList.toggle('checked');
+            li.classList.toggle('completed');
         });
 
         const text = document.createElement('span');
@@ -66,8 +56,8 @@ function addTask() {
 
         li.appendChild(checkbox);
         li.appendChild(text);
-        document.getElementById('taskList').appendChild(li);
+
+        document.getElementById('taskList').appendChild(li); // al final
         input.value = '';
     }
 }
-
