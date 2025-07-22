@@ -27,6 +27,8 @@ body {
     position: sticky;
     top: 0;
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
+    border-right: 2px solid #e0e4ea; /* Separador visual */
+    animation: fadeIn 0.7s;
 }
 
 .sidebar h1 {
@@ -53,19 +55,45 @@ body {
     background-color: #5A6B7A; /* Gris más oscuro al pasar el mouse */
 }
 
+/* --- MODIFICACIÓN PARA LISTA ESTILO CHAT --- */
+#list-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
 .list-item {
-    background-color: #4A6572; /* Gris oscuro para las listas, combinando con el fondo */
-    margin: 10px 0;
-    padding: 12px;
+    background: none;
+    border: none;
+    color: #ECF0F1;
+    margin: 0;
+    padding: 12px 8px;
     cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s;
+    border-radius: 0;
+    text-align: left;
+    transition: background 0.2s, color 0.2s;
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    box-shadow: none;
+    gap: 0;
+}
+
+.list-item::before {
+    content: none; /* Sin icono */
+}
+
+.list-item.active {
+    background: #273c5a;
+    color: #fff;
+    font-weight: 600;
 }
 
 .list-item:hover {
-    background-color: #5D6D7E; /* Gris azulado cuando se pasa el mouse */
+    background: #22304a;
+    color: #fff;
 }
+/* --- FIN MODIFICACIÓN --- */
 
 .main-area {
     flex: 1;
@@ -75,6 +103,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    animation: fadeIn 0.7s;
 }
 
 .welcome-message {
@@ -96,6 +125,11 @@ body {
     margin-top: 10px;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -105,9 +139,18 @@ body {
         width: 100%;
         padding: 20px;
         background-color: #1F3A6B; /* Mismo color en dispositivos pequeños */
+        border-right: none;
+        border-bottom: 2px solid #e0e4ea;
     }
 
     .main-area {
         padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .create-list-btn {
+        width: 100%;
+        font-size: 18px;
+        padding: 16px;
     }
 }
