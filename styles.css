@@ -1,4 +1,4 @@
-/* styles.css */
+/* Reset y configuración general */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #F7F7F7; /* Fondo muy suave para dar un toque limpio */
+    background-color: #F7F7F7;
 }
 
 .container {
@@ -16,18 +16,19 @@ body {
     flex-direction: row;
 }
 
+/* Barra lateral blanca */
 .sidebar {
     width: 300px;
-    background-color: #1F3A6B; /* Azul oscuro elegante para la barra lateral */
-    color: white;
+    background-color: #fff;
+    color: #1F3A6B;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     position: sticky;
     top: 0;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
-    border-right: 2px solid #e0e4ea; /* Separador visual */
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.08);
+    border-right: 2px solid #e0e4ea;
     animation: fadeIn 0.7s;
 }
 
@@ -35,14 +36,19 @@ body {
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 30px;
-    color: #ECF0F1; /* Blanco para contraste */
+    color: #1F3A6B;
+    text-align: center;
+}
+
+.sidebar h2 {
+    color: #1F3A6B;
     text-align: center;
 }
 
 .create-list-btn {
-    background-color: #6C7B8B; /* Gris azulado para el botón, tono más suave */
+    background-color: #1F3A6B;
     border: none;
-    color: white;
+    color: #fff;
     padding: 12px;
     margin-bottom: 20px;
     cursor: pointer;
@@ -52,10 +58,10 @@ body {
 }
 
 .create-list-btn:hover {
-    background-color: #5A6B7A; /* Gris más oscuro al pasar el mouse */
+    background-color: #27488f;
 }
 
-/* --- MODIFICACIÓN PARA LISTA ESTILO CHAT --- */
+/* Listas en óvalos azules */
 #list-container {
     list-style: none;
     padding: 0;
@@ -63,42 +69,37 @@ body {
 }
 
 .list-item {
-    background: none;
-    border: none;
-    color: #ECF0F1;
-    margin: 0;
-    padding: 12px 8px;
-    cursor: pointer;
-    border-radius: 0;
+    background: #1F3A6B;
+    color: #fff;
+    margin: 12px 0;
+    padding: 12px 24px;
+    border-radius: 999px;
     text-align: left;
-    transition: background 0.2s, color 0.2s;
-    display: block;
     font-size: 16px;
-    font-weight: 400;
-    box-shadow: none;
-    gap: 0;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 2px 8px rgba(31, 58, 107, 0.06);
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    display: block;
 }
 
 .list-item::before {
-    content: none; /* Sin icono */
+    content: none;
 }
 
-.list-item.active {
-    background: #273c5a;
+.list-item.active,
+.list-item:hover {
+    background: #27488f;
     color: #fff;
     font-weight: 600;
 }
 
-.list-item:hover {
-    background: #22304a;
-    color: #fff;
-}
-/* --- FIN MODIFICACIÓN --- */
-
+/* Área principal azul oscuro */
 .main-area {
     flex: 1;
     padding: 30px;
-    background-color: #F4F6F9; /* Fondo muy claro para el área principal */
+    background-color: #1F3A6B;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,22 +108,24 @@ body {
 }
 
 .welcome-message {
-    color: #7F8C8D; /* Gris suave para el texto de bienvenida */
+    color: #fff;
 }
 
 .welcome-message img {
-    width: 120px; /* Tamaño ajustado para mejor visibilidad */
+    width: 120px;
     height: 120px;
 }
 
 .welcome-message h2 {
     font-size: 32px;
     margin-top: 20px;
+    color: #fff;
 }
 
 .welcome-message p {
     font-size: 18px;
     margin-top: 10px;
+    color: #e0e4ea;
 }
 
 @keyframes fadeIn {
@@ -130,6 +133,7 @@ body {
     to { opacity: 1; transform: translateY(0);}
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -138,7 +142,7 @@ body {
     .sidebar {
         width: 100%;
         padding: 20px;
-        background-color: #1F3A6B; /* Mismo color en dispositivos pequeños */
+        background-color: #fff;
         border-right: none;
         border-bottom: 2px solid #e0e4ea;
     }
