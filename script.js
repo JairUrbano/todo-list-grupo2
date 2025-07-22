@@ -13,12 +13,38 @@ function addList() {
     if (listName) {
         const newListItem = document.createElement('li');
         newListItem.className = 'list-item';
-        newListItem.textContent = listName;
 
-        newListItem.addEventListener('click', function () {
-            showListView(listName);
-        });
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = listName;
+        titleSpan.className = 'list-title';
 
+        // Botón Editar lista
+        const editBtn = document.createElement('button');
+        editBtn.innerHTML = '✏️';
+        editBtn.className = 'edit-list-btn';
+        editBtn.onclick = function () {
+            const nuevoNombre = prompt('Editar nombre de la lista:', titleSpan.textContent);
+            if (nuevoNombre) {
+                titleSpan.textContent = nuevoNombre;
+            }
+        };
+
+        // Botón Eliminar lista
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerHTML = '🗑️';
+        deleteBtn.className = 'delete-list-btn';
+        deleteBtn.onclick = function () {
+            newListItem.remove();
+        };
+
+        // Mostrar tareas al hacer clic en el título
+        titleSpan.onclick = function () {
+            showTaskArea(listName);
+        };
+
+        newListItem.appendChild(titleSpan);
+        newListItem.appendChild(editBtn);
+        newListItem.appendChild(deleteBtn);
         document.getElementById('list-container').appendChild(newListItem);
     }
 
@@ -26,38 +52,66 @@ function addList() {
     closeModal();
 }
 
-function showListView(title) {
-    document.querySelector('.welcome-message').style.display = 'none';
-    const listView = document.querySelector('.list-view');
-    listView.style.display = 'block';
+// Mostrar tareas
+function showTaskArea(listName) {
+    const mainArea = document.querySelector('.main-area');
+    mainArea.innerHTML = ''; // Limpiar
 
-    document.getElementById('selectedListName').textContent = title;
-    document.getElementById('taskList').innerHTML = ''; // limpia tareas anteriores
-    document.getElementById('taskInput').value = '';
+    const header = document.createElement('h2');
+    header.textContent = `Tareas de: ${listName}`;
+
+    const taskInput = document.createElement('input');
+    taskInput.type = 'text';
+    taskInput.placeholder = 'Nueva tarea';
+
+    const addTaskBtn = document.createElement('button');
+    addTaskBtn.textContent = 'Agregar tarea';
+    const taskList = document.createElement('ul');
+    taskList.className = 'task-list';
+
+    addTaskBtn.onclick = function () {
+        const taskText = taskInput.value.trim();
+        if (taskText) {
+            addTask(taskText, taskList);
+            taskInput.value = '';
+        }
+    };
+
+    mainArea.appendChild(header);
+    mainArea.appendChild(taskInput);
+    mainArea.appendChild(addTaskBtn);
+    mainArea.appendChild(taskList);
 }
 
-function addTask() {
-    const input = document.getElementById('taskInput');
-    const value = input.value.trim();
+// Añadir una tarea
+function addTask(text, taskList) {
+    const taskItem = document.createElement('li');
+    taskItem.className = 'task-item';
 
-    if (value) {
-        const li = document.createElement('li');
-        li.className = 'task-item';
+    const taskSpan = document.createElement('span');
+    taskSpan.textContent = text;
 
-        const checkbox = document.createElement('span');
-        checkbox.className = 'custom-checkbox';
-        checkbox.addEventListener('click', () => {
-            checkbox.classList.toggle('checked');
-            li.classList.toggle('completed');
-        });
+    // Botón Editar tarea
+    const editTaskBtn = document.createElement('button');
+    editTaskBtn.innerHTML = '✏️';
+    editTaskBtn.className = 'edit-task-btn';
+    editTaskBtn.onclick = function () {
+        const nuevoTexto = prompt('Editar tarea:', taskSpan.textContent);
+        if (nuevoTexto) {
+            taskSpan.textContent = nuevoTexto;
+        }
+    };
 
-        const text = document.createElement('span');
-        text.textContent = value;
+    // Botón Eliminar tarea
+    const deleteTaskBtn = document.createElement('button');
+    deleteTaskBtn.innerHTML = '🗑️';
+    deleteTaskBtn.className = 'delete-task-btn';
+    deleteTaskBtn.onclick = function () {
+        taskItem.remove();
+    };
 
-        li.appendChild(checkbox);
-        li.appendChild(text);
-
-        document.getElementById('taskList').appendChild(li); // al final
-        input.value = '';
-    }
+    taskItem.appendChild(taskSpan);
+    taskItem.appendChild(editTaskBtn);
+    taskItem.appendChild(deleteTaskBtn);
+    taskList.appendChild(taskItem);
 }

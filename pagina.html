@@ -13,40 +13,22 @@
             <h1>To-do List</h1>
             <button class="create-list-btn" onclick="createNewList()">+ Crear Nueva Lista</button>
             <h2>Mis Listas</h2>
-            <ul id="list-container"></ul>
+            <ul id="list-container">
+                <!-- Aquí se mostrarán las listas creadas -->
+            </ul>
         </div>
 
         <!-- Área principal -->
         <div class="main-area">
-            <!-- Vista de bienvenida -->
             <div class="welcome-message">
+                <img src="img/icon-list.jpeg" alt="clipboard icon">
                 <h2>¡¡Bienvenido!!</h2>
-                <p>Selecciona una lista o crea una nueva para empezar.</p>
+                <p>Selecciona una lista para ver sus tareas o crea una nueva para empezar.</p>
             </div>
-
-            <!-- Vista de la lista activa -->
-            <div class="list-view" style="display: none;">
-    <div class="table-container">
-        <div class="table-body">
-            <!-- Mostrar el nombre de la lista arriba -->
-            <h2 id="selectedListName" class="list-title">Nombre de la lista</h2>
-
-            <!-- Barra fija para añadir tareas -->
-            <div class="add-task-bar">
-                <input type="text" id="taskInput" placeholder="Escribe una tarea...">
-                <button onclick="addTask()">Añadir</button>
-            </div>
-
-            <!-- Lista de tareas -->
-            <ul id="taskList" class="task-list-wrapper"></ul>
-        </div>
-    </div>
-</div>
-
         </div>
     </div>
 
-    <!-- Modal para nueva lista -->
+    <!-- Modal para crear nueva lista -->
     <div id="newListModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
