@@ -17,32 +17,38 @@ body {
     flex-direction: row;
 }
 
-/* Barra lateral */
+/* Barra lateral blanca */
 .sidebar {
     width: 300px;
-    background-color: #1F3A6B; /* Azul oscuro */
-    color: white;
+    background-color: #fff;
+    color: #1F3A6B;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     position: sticky;
     top: 0;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.08);
+    border-right: 2px solid #e0e4ea;
 }
 
 .sidebar h1 {
     font-size: 30px;
     font-weight: 600;
     margin-bottom: 30px;
-    color: #ECF0F1;
+    color: #1F3A6B;
+    text-align: center;
+}
+
+.sidebar h2 {
+    color: #1F3A6B;
     text-align: center;
 }
 
 .create-list-btn {
-    background-color: #6C7B8B;
+    background-color: #1F3A6B;
     border: none;
-    color: white;
+    color: #fff;
     padding: 12px;
     margin-bottom: 20px;
     cursor: pointer;
@@ -52,50 +58,44 @@ body {
 }
 
 .create-list-btn:hover {
-    background-color: #5A6B7A;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra más prominente */
+    background-color: #27488f;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilo para las listas */
-#task-list {
-    list-style-type: none;
+/* Listas en óvalos azules */
+#list-container {
+    list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .list-item {
-    background-color: #4A6572;
-    margin: 10px 0;
-    padding: 12px;
+    background: #1F3A6B;
+    color: #fff;
+    margin: 12px 0;
+    padding: 12px 24px;
+    border-radius: 999px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 2px 8px rgba(31, 58, 107, 0.06);
+    transition: background 0.2s, color 0.2s;
     cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s, transform 0.1s;
+    display: block;
 }
 
+.list-item.active,
 .list-item:hover {
-    background-color: #5D6D7E;
-    transform: translateY(-3px); /* Efecto de elevación al pasar el mouse */
+    background: #27488f;
+    color: #fff;
 }
 
-.list-item:active {
-    background-color: #7A8D9C; /* Resaltar al hacer clic */
-}
-
-/* Estilo para íconos en las listas */
-#task-list li i {
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-#task-list li i:hover {
-    color: #ffb703; /* Cambiar color en hover */
-}
-
-/* Área principal */
+/* Área principal azul oscuro */
 .main-area {
     flex: 1;
     padding: 30px;
-    background-color: #F4F6F9;
+    background-color: #1F3A6B;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -103,7 +103,7 @@ body {
 }
 
 .welcome-message {
-    color: #7F8C8D;
+    color: #fff;
 }
 
 .welcome-message img {
@@ -114,11 +114,13 @@ body {
 .welcome-message h2 {
     font-size: 32px;
     margin-top: 20px;
+    color: #fff;
 }
 
 .welcome-message p {
     font-size: 18px;
     margin-top: 10px;
+    color: #e0e4ea;
 }
 
 /* Modal */
@@ -199,11 +201,12 @@ body {
     .sidebar {
         width: 100%;
         padding: 20px;
+        border-right: none;
+        border-bottom: 2px solid #e0e4ea;
     }
 
     .main-area {
         padding: 15px;
     }
 }
-
  
