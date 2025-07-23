@@ -39,6 +39,5 @@ La aplicación está siendo desarrollada en el marco de un proyecto colaborativo
 
 ---
 
-## 🗂 Estructura del repositorio
 
 
