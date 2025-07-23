@@ -64,7 +64,7 @@ function showTaskArea(listName) {
     mainArea.innerHTML = ''; // Limpiar
 
     const header = document.createElement('h2');
-    header.textContent = `Tareas de: ${listName}`;
+    header.textContent = ` ${listName}`;
 
     const taskInput = document.createElement('input');
     taskInput.type = 'text';
@@ -113,7 +113,7 @@ function addTask(text, taskList, listName, isDone) {
     });
 
     // Botón Editar tarea
-    const editTaskBtn = document.createElement('button');
+    const editTaskBtn = document.createElement('buttonlapiz');
     editTaskBtn.innerHTML = '✏️';
     editTaskBtn.className = 'edit-task-btn';
     editTaskBtn.onclick = function () {
@@ -125,7 +125,7 @@ function addTask(text, taskList, listName, isDone) {
     };
 
     // Botón Eliminar tarea
-    const deleteTaskBtn = document.createElement('button');
+    const deleteTaskBtn = document.createElement('buttontacho');
     deleteTaskBtn.innerHTML = '🗑️';
     deleteTaskBtn.className = 'delete-task-btn';
     deleteTaskBtn.onclick = function () {
